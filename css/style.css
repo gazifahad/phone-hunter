@@ -2,3 +2,13 @@
     width: 60%;
     margin:auto;
 }
+#search-image{
+    width: auto;
+    height: 80%;
+}
+#card-id{
+    background-color: rgb(244, 240, 255);
+}
+.card{
+margin: auto;
+}

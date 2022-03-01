@@ -24,27 +24,53 @@ const searchResult=allData=>{
         alert('no result found! please type a phone name')
     }
     else{
-        console.log(allData.status)
+        // console.log(allData.status)
         const results=allData.data;
         const containerDiv=document.getElementById('container');
         containerDiv.textContent=''
         results.forEach(result=>{
+            // console.log(result);
             const colDiv=document.createElement('div');
+            colDiv.classList.add('col')
             containerDiv.appendChild(colDiv);
             colDiv.innerHTML=`
-            <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
+            <div id="card-id" class="card">
+                    <img src="${result.image}" class="card-img-top container-fluid" id="search-image" alt="no image found">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <h5 class="card-title">${result.phone_name}</h5>
+                      <h5 class="card-title">${result.brand}</h5>
+            
+                      <button type="button" class="btn btn-outline-secondary"onclick="catchDetails('${result.slug}')">see details</button> 
+                     
+                      
                     </div>
                   </div>
             `
         })
         }
 
-   
-// for(const result of results){
-
-// }
+}
+// catch detail link 
+const catchDetails=link=>{
+    detailUrl=`https://openapi.programming-hero.com/api/phone/${link}`
+    fetch(detailUrl)
+    .then(res=>res.json())
+    .then(data=>showDetails(data))
+}
+const showDetails=details=>{
+    console.log(details)
+    const detailCOntainer=document.getElementById('details-container');
+    detailCOntainer.textContent=''
+    const newDiv=document.createElement('div');
+    newDiv.classList.add('card');
+    newDiv.style.width='18rem'
+    detailCOntainer.appendChild(newDiv);
+    newDiv.innerHTML=`
+    <div class="card-body">
+    <img src="${details.data.image}" class="card-img-top container-fluid" id="search-image" alt="no image found">
+    <h5 class="card-title">${details.data.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+    `
 }
