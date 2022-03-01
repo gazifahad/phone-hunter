@@ -16,3 +16,7 @@ margin: auto;
     text-align: left;
     background-color: beige;
 }
+#spinner{
+  text-align: center;
+  display: none;
+}

@@ -1,16 +1,32 @@
 // funtion for making enter button to hit search 
+
 document.getElementById('input-field').addEventListener('keyup',(event)=>{
     if(event.keyCode == 13){
         event.preventDefault();
         document.getElementById('button-addon2').click()
     }
 })
+// function for spinner visibility 
+const spinnerVisibility=styles=>{
+    document.getElementById('spinner').style.display=styles;
+}
+const phoneDetailsVisibility=styles=>{
+    document.getElementById('details-container').style.visibility=styles;
+    document.getElementById('container').style.visibility=styles;
+}
+
+
 //   getting the search input 
 const search=()=>{
+    
+    spinnerVisibility('block');
+    phoneDetailsVisibility('hidden')
     const input=document.getElementById('input-field');
     const inputValue=input.value;
+    const inputValueSmall=inputValue.toLowerCase();
+    console.log(inputValueSmall);
     // fetching input value and sending it to next function 
-    const url=`https://openapi.programming-hero.com/api/phones?search=${inputValue}`
+    const url=`https://openapi.programming-hero.com/api/phones?search=${inputValueSmall}`
     fetch(url)
     .then(res=>res.json())
     .then(data=>searchResult(data))
@@ -19,9 +35,14 @@ const search=()=>{
 }
 // recieve the input data and set next action 
 const searchResult=allData=>{
+    
+    
+
     // error message for no result 
     if(allData.status === false){
+        spinnerVisibility('none')
         alert('no result found! please type a phone name')
+       
     }
     else{
         // console.log(allData.status)
@@ -29,8 +50,9 @@ const searchResult=allData=>{
         const containerDiv=document.getElementById('container');
         containerDiv.textContent=''
         const detailCOntainer=document.getElementById('details-container');
-    detailCOntainer.textContent=''
-        results.forEach(result=>{
+        detailCOntainer.textContent=''
+        const resultsSliced=results.slice(0,20);
+        resultsSliced.forEach(result=>{
             // console.log(result);
             const colDiv=document.createElement('div');
             colDiv.classList.add('col')
@@ -49,6 +71,9 @@ const searchResult=allData=>{
                   </div>
             `
         })
+        spinnerVisibility('none')
+        phoneDetailsVisibility('visible')
+        
         }
 
 }
@@ -59,6 +84,7 @@ const catchDetails=link=>{
     .then(res=>res.json())
     .then(data=>showDetails(data))
 }
+// set detailed information 
 const showDetails=details=>{
     console.log(details)
     const detailCOntainer=document.getElementById('details-container');

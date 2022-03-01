@@ -14,6 +14,7 @@
     <header class="text-center text-primary mt-2">
         <h1>Phone Finder</h1>
         <p>search to find your desired phone</p>
+        
     </header>
     <main>
         <!-- search box -->
@@ -22,6 +23,13 @@
             <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="search()">search</button>
           </div>
           <!-- search box area finished  -->
+          <!-- spinner area start  -->
+          <div id="spinner">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <!-- spinner area finished  -->
           <!-- card section starts  -->
           <section>
               <!-- single phone detail container -->
