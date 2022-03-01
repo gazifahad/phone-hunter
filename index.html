@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>phone-finder</title>
     <!--  custom css link -->
     <link rel="stylesheet" href="css/style.css">
@@ -18,11 +18,24 @@
     <main>
         <!-- search box -->
         <div id="search" class="input-group">
-            <input type="text" class=" form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            <input type="text" class=" form-control" id="input-field" placeholder="tap to write" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="search()">search</button>
           </div>
           <!-- search box area finished  -->
-
+          <!-- card section starts  -->
+          <section>
+            <div id="container" class="row row-cols-1 row-cols-md-3 m-5 g-4">
+                <div class="col">
+                  <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
     </main>
     <footer>
 
