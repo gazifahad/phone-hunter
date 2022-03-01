@@ -12,3 +12,7 @@
 .card{
 margin: auto;
 }
+#phone-features{
+    text-align: left;
+    background-color: beige;
+}

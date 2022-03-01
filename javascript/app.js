@@ -36,7 +36,7 @@ const searchResult=allData=>{
             colDiv.innerHTML=`
             <div id="card-id" class="card">
                     <img src="${result.image}" class="card-img-top container-fluid" id="search-image" alt="no image found">
-                    <div class="card-body">
+                    <div class="card-body text-center">
                       <h5 class="card-title">${result.phone_name}</h5>
                       <h5 class="card-title">${result.brand}</h5>
             
@@ -66,11 +66,21 @@ const showDetails=details=>{
     newDiv.style.width='18rem'
     detailCOntainer.appendChild(newDiv);
     newDiv.innerHTML=`
-    <div class="card-body">
+    <div id='phone-features'class="card-body">
     <img src="${details.data.image}" class="card-img-top container-fluid" id="search-image" alt="no image found">
     <h5 class="card-title">${details.data.name}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h6 class="card-subtitle mb-2 text-muted">${details.data.releaseDate ? details.data.releaseDate:"no release date found"} </h6>
+    <small>cheapset: ${details.data.mainFeatures.chipSet}</small>
+    <small>display size: ${details.data.mainFeatures.displaySize}</small><br>
+    <small>Memory: ${details.data.mainFeatures.memory}</small><br>
+    <small>Bluetooth: ${details.data.others.Bluetooth} </small><br>
+    <small>GPS: ${details.data.others.GPS} </small><br>
+    <small>NFC: ${details.data.others.NFC} </small><br>
+    <small>Radio: ${details.data.others.Radio} </small><br>
+    <small>USB: ${details.data.others.USB} </small><br>
+    <small>WLAN: ${details.data.others.WLAN} </small><br>
+    <small>sensors: ${details.data.mainFeatures.sensors[0] +','+ details.data.mainFeatures.sensors[1]+','+ details.data.mainFeatures.sensors[2]+','+ details.data.mainFeatures.sensors[3]+','+details.data.mainFeatures.sensors[4]+','+ details.data.mainFeatures.sensors[5]}</small><br>
+
   </div>
     `
 }
