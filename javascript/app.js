@@ -28,6 +28,8 @@ const searchResult=allData=>{
         const results=allData.data;
         const containerDiv=document.getElementById('container');
         containerDiv.textContent=''
+        const detailCOntainer=document.getElementById('details-container');
+    detailCOntainer.textContent=''
         results.forEach(result=>{
             // console.log(result);
             const colDiv=document.createElement('div');
@@ -73,12 +75,12 @@ const showDetails=details=>{
     <small>cheapset: ${details.data.mainFeatures.chipSet}</small>
     <small>display size: ${details.data.mainFeatures.displaySize}</small><br>
     <small>Memory: ${details.data.mainFeatures.memory}</small><br>
-    <small>Bluetooth: ${details.data.others.Bluetooth} </small><br>
-    <small>GPS: ${details.data.others.GPS} </small><br>
-    <small>NFC: ${details.data.others.NFC} </small><br>
-    <small>Radio: ${details.data.others.Radio} </small><br>
-    <small>USB: ${details.data.others.USB} </small><br>
-    <small>WLAN: ${details.data.others.WLAN} </small><br>
+    <small>Bluetooth: ${details.data.others?.Bluetooth ? details.data.others.Bluetooth : "not available" } </small><br>
+    <small>GPS: ${details.data.others?.GPS ? details.data.others.GPS : "not available"}  </small><br>
+    <small>NFC: ${details.data.others?.NFC ? details.data.others.NFC : "not available"} </small><br>
+    <small>Radio: ${details.data.others?.Radio ? details.data.others.Radio : "not available"} </small><br>
+    <small>USB: ${details.data.others?.USB ? details.data.others.USB : "not available"} </small><br>
+    <small>WLAN: ${details.data.others?.WLAN ? details.data.others.WLAN : "not available"} </small><br>
     <small>sensors: ${details.data.mainFeatures.sensors[0] +','+ details.data.mainFeatures.sensors[1]+','+ details.data.mainFeatures.sensors[2]+','+ details.data.mainFeatures.sensors[3]+','+details.data.mainFeatures.sensors[4]+','+ details.data.mainFeatures.sensors[5]}</small><br>
 
   </div>
