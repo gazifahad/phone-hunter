@@ -32,14 +32,26 @@ const search=()=>{
     input.value=''
     
 }
-// function for creating Element 
-const createNew=results=>{
-    const containerDiv=document.getElementById('container');
+// recieve the input data and set next action 
+const searchResult=allData=>{
+    
+    
+
+    // error message for no result 
+    if(allData.status === false){
+        spinnerVisibility('none')
+        alert('no result found! please type a phone name')
+       
+    }
+    else{
+       
+        const results=allData.data;
+        const containerDiv=document.getElementById('container');
         containerDiv.textContent=''
         const detailCOntainer=document.getElementById('details-container');
         detailCOntainer.textContent=''
-       
-        results.forEach(result=>{
+        const resultsSliced=results.slice(0,20);
+        resultsSliced.forEach(result=>{
             
             const colDiv=document.createElement('div');
             colDiv.classList.add('col')
@@ -57,48 +69,6 @@ const createNew=results=>{
                   </div>
             `
         })
-}
-// recieve the input data and set next action 
-const searchResult=allData=>{
-    
-    
-
-    // error message for no result 
-    if(allData.status === false){
-        spinnerVisibility('none')
-        alert('no result found! please type a phone name')
-       
-    }
-    else{
-        const results=allData.data;
-        const arrayLength=results.length;
-        if(arrayLength < 20){
-        createNew(results);
-        }
-        if(arrayLength => 20){
-        const resultsSliced=results.slice(0,20);
-        createNew(resultsSliced);
-        const phoneContainer=document.getElementById('see-more');
-        const btnDiv=document.createElement('div');
-        btnDiv.classList.add('btn-div')
-        phoneContainer.appendChild(btnDiv);
-        btnDiv.innerHTML=`
-        <button class="btn btn-outline-secondary" type="button" id="button-addon3" >seemore</button>
-          </div>
-        `
-        document.getElementById('button-addon3').addEventListener('click',function(){
-            const restResult=results.slice(20,arrayLength);
-            createNew(restResult);
-            document.getElementById('button-addon3').style.display="none"
-
-        })
-        
-
-
-    }
-
-        
-        
         spinnerVisibility('none')
         phoneDetailsVisibility('visible')
         
