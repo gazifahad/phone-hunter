@@ -79,6 +79,7 @@ const searchResult=allData=>{
         const resultsSliced=results.slice(0,20);
         createNew(resultsSliced);
         const phoneContainer=document.getElementById('see-more');
+        phoneContainer.textContent='';
         const btnDiv=document.createElement('div');
         btnDiv.classList.add('btn-div')
         phoneContainer.appendChild(btnDiv);
