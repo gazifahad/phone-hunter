@@ -2,6 +2,10 @@
     width: 60%;
     margin:auto;
 }
+#button-addon2{
+background-color: rgb(26, 24, 26);
+color: rgb(239, 241, 235);
+}
 #search-image{
     width: auto;
     height: 80%;
@@ -15,6 +19,11 @@ margin: auto;
 #phone-features{
     text-align: left;
     background-color: beige;
+}
+#cross{
+    position: absolute;
+    top:0;
+    right:0;
 }
 #spinner{
   text-align: center;

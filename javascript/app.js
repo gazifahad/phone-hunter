@@ -19,6 +19,7 @@ const phoneDetailsVisibility=styles=>{
 //   getting the search input 
 const search=()=>{
     
+    document.getElementById('phone-count').textContent='';
     spinnerVisibility('block');
     phoneDetailsVisibility('hidden')
     const input=document.getElementById('input-field');
@@ -34,7 +35,7 @@ const search=()=>{
 }
 // function for creating Element 
 const createNew=results=>{
-    const containerDiv=document.getElementById('container');
+        const containerDiv=document.getElementById('container');
         containerDiv.textContent=''
         const detailCOntainer=document.getElementById('details-container');
         detailCOntainer.textContent=''
@@ -48,9 +49,9 @@ const createNew=results=>{
             <div id="card-id" class="card">
                     <img src="${result.image}" class="card-img-top container-fluid" id="search-image" alt="no image found">
                     <div class="card-body text-center">
-                      <h5 class="card-title">${result.phone_name}</h5>
-                      <h5 class="card-title">${result.brand}</h5>
-                      <button type="button" class="btn btn-outline-secondary"onclick="catchDetails('${result.slug}')">see details</button> 
+                      <h5 class="card-title">Model: ${result.phone_name}</h5>
+                      <h5 class="card-title">Brand: ${result.brand}</h5>
+                      <a href="#details-container"><button type="button" class="btn btn-outline-secondary"onclick="catchDetails('${result.slug}')">see details</button> <a>
                      
                       
                     </div>
@@ -72,6 +73,8 @@ const searchResult=allData=>{
     else{
         const results=allData.data;
         const arrayLength=results.length;
+        const phoneCounter=document.getElementById('phone-count');
+        phoneCounter.innerHTML=`found <span class='text-warning'>${arrayLength} </span>phones/gadgetes`
         if(arrayLength < 20){
         createNew(results);
         }
@@ -93,13 +96,7 @@ const searchResult=allData=>{
             document.getElementById('button-addon3').style.display="none"
 
         })
-        
-
-
-    }
-
-        
-        
+         }
         spinnerVisibility('none')
         phoneDetailsVisibility('visible')
         
@@ -108,6 +105,8 @@ const searchResult=allData=>{
 }
 // catch detail link 
 const catchDetails=link=>{
+    document.getElementById('details-container').style.display='block'
+    document.getElementById('phone-count').textContent='';
     detailUrl=`https://openapi.programming-hero.com/api/phone/${link}`
     fetch(detailUrl)
     .then(res=>res.json())
@@ -135,8 +134,16 @@ const showDetails=details=>{
     <small>Radio: ${details.data.others?.Radio ? details.data.others.Radio : "not available"} </small><br>
     <small>USB: ${details.data.others?.USB ? details.data.others.USB : "not available"} </small><br>
     <small>WLAN: ${details.data.others?.WLAN ? details.data.others.WLAN : "not available"} </small><br>
-    <small>sensors: ${details.data.mainFeatures.sensors[0] +','+ details.data.mainFeatures.sensors[1]+','+ details.data.mainFeatures.sensors[2]+','+ details.data.mainFeatures.sensors[3]+','+details.data.mainFeatures.sensors[4]+','+ details.data.mainFeatures.sensors[5]}</small><br>
+    <small>sensors: ${details.data.mainFeatures.sensors[0] +','+ details.data.mainFeatures.sensors[1]+','+ details.data.mainFeatures.sensors[2]+','+ details.data.mainFeatures.sensors[3]+','+details.data.mainFeatures.sensors[4]+','+ details.data.mainFeatures.sensors[5]}</small>
+    <button type="button" id="cross" class="close" aria-label="Close" onclick="closeDetails()">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    
 
   </div>
     `
+}
+// cross button function 
+const closeDetails=()=>{
+   document.getElementById('details-container').style.display='none'
 }
